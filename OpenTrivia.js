@@ -31,7 +31,7 @@ function display() {
     var number = document.querySelector('input').value
     var category = document.getElementById('category').value
 
-   
+
 
     var xhr = new XMLHttpRequest()
     var link = 'https://opentdb.com/api.php?amount=' + number + '&category=' + category + '&type=' + type
@@ -44,23 +44,27 @@ function display() {
             if (result.response_code == 0) {
                 //console.log(result);
                 for (var i = 0; i < result.results.length; i++) {
-                    if (type == "boolean"){
-                    var div = document.createElement('div')
-                    var q = document.createElement("h2")
-                    var q_string = "Question : " + result.results[i].question
-                    q.textContent = q_string
-                    Q_A[q_string] = result.results[i].correct_answer
-                    var btn_true = document.createElement('input')
-                    var btn_false = document.createElement('input')
-                    function setAttributes(el, attrs) {
-                        for (var key in attrs) {
-                            el.setAttribute(key, attrs[key]);
+                    if (type == "boolean") {
+                        var div = document.createElement('div')
+                        var q = document.createElement("h2")
+                        var q_string = "Question : " + result.results[i].question
+                        q.textContent = q_string
+                        Q_A[q_string] = result.results[i].correct_answer
+                        var btn_true = document.createElement('input')
+                        var l_true = document.createElement('label')
+                        l_true.textContent = "TRUE"
+                        var btn_false = document.createElement('input')
+                        var l_false = document.createElement('label')
+                        l_false.textContent = "FALSE"
+                        function setAttributes(el, attrs) {
+                            for (var key in attrs) {
+                                el.setAttribute(key, attrs[key]);
+                            }
                         }
-                    }
-                    setAttributes(btn_true, { 'type': 'button', "id": "true", "name": "True", "value": "True" ,})
-                    setAttributes(btn_false, { 'type': 'button', "id": "false", "name": "False", "value": "False" })
-                    div.append(q, btn_true, btn_false)
-                    div_main.appendChild(div)
+                        setAttributes(btn_true, { 'type': 'radio', "name": "Option", "value": "True", })
+                        setAttributes(btn_false, { 'type': 'radio', "name": "Option", "value": "False" })
+                        div.append(q, btn_true, l_true, btn_false, l_false)
+                        div_main.appendChild(div)
                     }
 
                     else if (type == "multiple") {
@@ -69,22 +73,36 @@ function display() {
                         var q_string = "Question : " + result.results[i].question
                         q.textContent = q_string
                         Q_A[q_string] = result.results[i].correct_answer
-                        // var btn_true = document.createElement('input')
-                        // var btn_false = document.createElement('input')
-                        // function setAttributes(el, attrs) {
-                        //     for (var key in attrs) {
-                        //         el.setAttribute(key, attrs[key]);
-                        //     }
-                        // }
                         var arr = []
                         arr.push(result.results[i].correct_answer)
-                        var arr1 = arr.concat(result.results[i].incorrect_answer)
-                        console.log(arr1)
-                        // var ans_div = document.createElement('div')
-                        // var h3 = document.createElement('h3')
-                        // h3.textContent = 
+                        var arr = arr.concat(result.results[i].incorrect_answers)
+                        arr = arr.sort()
 
-                        
+                        var opt_1 = document.createElement('input')
+                        var opt_1_label = document.createElement('label')
+                        var opt_2 = document.createElement('input')
+                        var opt_2_label = document.createElement('label')
+                        var opt_3 = document.createElement('input')
+                        var opt_3_label = document.createElement('label')
+                        var opt_4 = document.createElement('input')
+                        var opt_4_label = document.createElement('label')
+                        opt_1_label.textContent = arr[0]
+                        opt_2_label.textContent = arr[1]
+                        opt_3_label.textContent = arr[2]
+                        opt_4_label.textContent = arr[3]
+                        function setAttributes(el, attrs) {
+                            for (var key in attrs) {
+                                el.setAttribute(key, attrs[key]);
+                            }
+                        }
+
+                        setAttributes(opt_1, { 'type': 'radio', "name": "Option", "value": arr[0] })
+                        setAttributes(opt_2, { 'type': 'radio', "name": "Option", "value": arr[1] })
+                        setAttributes(opt_3, { 'type': 'radio', "name": "Option", "value": arr[2] })
+                        setAttributes(opt_4, { 'type': 'radio', "name": "Option", "value": arr[3] })
+
+                        div.append(q, opt_1, opt_1_label, opt_2, opt_2_label, opt_3, opt_3_label, opt_4, opt_4_label)
+                        div_main.appendChild(div)
 
                     }
 
@@ -98,59 +116,14 @@ function display() {
 
 div_main.addEventListener("click", click, true)
 
-function click(){
+function click() {
     var c_ans = Q_A[event.target.parentNode.children[0].innerHTML]
-    if (type == "boolean"){
-        if (c_ans == event.target.value){
-            event.target.parentNode.style = "background-color: green"
-            alert("Correct Answer")
-            
-        }
-        else{
-            event.target.parentNode.style = "background-color: red"
-            alert("Wrong Answer")
-            
-        } 
-    }
-     
-    else if (type == "multiple"){
+    if (c_ans == event.target.value && event.target.localName == 'input') {
+        event.target.parentNode.style = "background-color: rgb(35, 95, 35)"
 
     }
+    else if (event.target.localName == 'input') {
+        event.target.parentNode.style = "background-color: rgb(139, 21, 21)"
 
-     
-
+    }
 }
-    //         var result = JSON.parse(xhr.response)
-    //         result.items = result.items.splice(0,9)
-
-    //         for (var i = 0; i < result.items.length ; i++){
-
-    //         var div = document.querySelector('div')
-    //         var p = document.createElement("p")
-    //         p.textContent = "Name : " + result["items"][i]["full_name"]
-    //         div.appendChild(p)
-
-    //         var ul = document.createElement("ul")
-    //         var li1 = document.createElement("li")
-    //         li1.textContent = "Language of repository is : " + result["items"][i]["language"]
-    //         var li2 = document.createElement("li")
-    //         var repo_link = document.createElement('a')
-    //         repo_link.setAttribute('href', result["items"][i]["html_url"])
-    //         repo_link.textContent = result["items"][i]["html_url"]
-    //         li2.textContent = "Link to repository is : "
-    //         li2.appendChild(repo_link)
-    //         var li3 = document.createElement("li")
-    //         li3.textContent = "Description : " + result["items"][i]["description"]
-
-    //         ul.appendChild(li1)
-    //         ul.appendChild(li2)
-    //         ul.appendChild(li3)
-    //         div.appendChild(ul)
-
-    //         }
-
-    //     }
-    //     else {
-    //         console.log("Error Code is:" + xhr.status)
-    //     }
-    // }
