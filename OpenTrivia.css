@@ -1,0 +1,35 @@
+ input, select {
+     height: 53px;
+     width: 100%;
+     font-size: x-large;
+     color: rgb(40, 18, 59);
+     border: 2px solid black;
+     margin-top: 10px;
+     clear: both;
+ }
+
+ label {
+     font-size: xx-large;
+     color: rgb(40, 18, 59);
+     margin-top: 35px;
+     display: block;
+     color: white;
+ }
+
+ button {
+     height: 46px;
+     width: 100%;
+     font-size: x-large;
+     background-color: rgb(40, 18, 59);
+     color: white;
+     margin-top: 30px;
+ }
+
+ h1 {
+     color: white;
+     text-align: center;
+ }
+
+ body {
+     background-color: rgb(55, 59, 68);
+ }
