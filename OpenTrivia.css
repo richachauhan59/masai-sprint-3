@@ -1,14 +1,16 @@
- input, select {
-     height: 53px;
+ form>input, form>select {
+     height: 62px;
      width: 100%;
      font-size: x-large;
      color: rgb(40, 18, 59);
      border: 2px solid black;
      margin-top: 10px;
      clear: both;
+     border-radius: 7px;
+     padding-left: 15px;
  }
 
- label {
+ form>label {
      font-size: xx-large;
      color: rgb(40, 18, 59);
      margin-top: 35px;
@@ -17,10 +19,10 @@
  }
 
  button {
-     height: 46px;
+     height: 60px;
      width: 100%;
      font-size: x-large;
-     background-color: rgb(40, 18, 59);
+     background-color: rgb(134, 142, 158);
      color: white;
      margin-top: 30px;
  }
@@ -30,6 +32,33 @@
      text-align: center;
  }
 
+ h2 {
+     color: white;
+ }
+
  body {
      background-color: rgb(55, 59, 68);
+ }
+
+ div>input {
+     color: white;
+     font-size: large;
+     margin: 5px 50px 5px 0px;
+ }
+
+ div>#true {
+     background-color: rgb(35, 95, 35);
+ }
+
+ div>#false {
+     background-color: rgb(139, 21, 21);
+ }
+
+ div{
+     margin: 10px 200px 0px 10px;
+ }
+
+ div >h2{
+     margin-top: 30px;
+     margin-bottom: 5px;
  }

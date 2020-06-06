@@ -8,34 +8,29 @@
     <link rel="stylesheet" href="OpenTrivia.css">
 </head>
 
-<body>
-    <h1>Challenge Yourself with Amazing Trivia</h1>
-    <label>Select number of question:</label>
-    <input type="number">
-    <label>Select category:</label>
-    <select>
-        <option>Any Category</option>
-        <option>Genral Knowledge</option>
-        <option>History</option>
-        <option>Politics</option>
-        <option>Art</option>
-        <option>Animals</option>
-        <option>vehicals</option>
-    </select>
+<body onload="form()">
+    <form onload="form()">
+        <h1>Challenge Yourself with Amazing Trivia</h1>
+        <label>Select number of question:</label>
+        <input type="number">
+        <label>Select category:</label>
+        <select id="category">
+        </select>
 
-    <label>Select Type:</label>
-    <select>
-        <option>Any type</option>
-        <option>True/False</option>
-        <option>Multiple Choice</option>
-    </select>
-    <button onclick="display()">Submit</button>
-
-    <div>
+        <label>Select Type:</label>
+        <select id="type">
+            <option>Any type</option>
+            <option value="boolean">True/False</option>
+            <option value="multiple">Multiple Choice</option>
+        </select>
+        <button onclick="display()">Submit</button>
+    </form>
+    <div id="main">
     </div>
 
     <script type="text/javascript" src="OpenTrivia.js">
     </script>
+
 </body>
 
 </html>
