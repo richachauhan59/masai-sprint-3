@@ -20,7 +20,7 @@ function form() {
     }
 }
 
-
+var div_main = document.getElementById("main")
 var Q_A = {
 
 }
@@ -28,7 +28,7 @@ var Q_A = {
 function display() {
     event.preventDefault()
     var type = document.getElementById('type').value
-    var div_main = document.getElementById("main")
+
     var number = document.querySelector('input').value
     var category = document.getElementById('category').value
 
@@ -144,10 +144,10 @@ div_main.addEventListener("click", click, true)
 function click() {
     var c_ans = Q_A[event.target.parentNode.children[0].innerHTML]
     if (c_ans == event.target.value && event.target.localName == 'input') {
-        event.target.parentNode.style = "background-color: rgb(35, 95, 35)"
+        event.target.parentNode.style = "background-color: rgb(112, 234, 112)"
 
     } else if (event.target.localName == 'input') {
-        event.target.parentNode.style = "background-color: rgb(139, 21, 21)"
+        event.target.parentNode.style = "background-color: rgb(226, 88, 88)"
 
     }
 }
