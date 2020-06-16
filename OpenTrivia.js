@@ -1,4 +1,3 @@
-
 function form() {
     event.preventDefault()
     var category = document.getElementById('category')
@@ -21,18 +20,20 @@ function form() {
     }
 }
 
-var type = document.getElementById('type').value
-var div_main = document.getElementById("main")
+
 var Q_A = {
 
 }
+
 function display() {
     event.preventDefault()
+    var type = document.getElementById('type').value
+    var div_main = document.getElementById("main")
     var number = document.querySelector('input').value
     var category = document.getElementById('category').value
 
 
-
+    console.log(type)
     var xhr = new XMLHttpRequest()
     var link = 'https://opentdb.com/api.php?amount=' + number + '&category=' + category + '&type=' + type
     xhr.open('GET', link)
@@ -56,18 +57,25 @@ function display() {
                         var btn_false = document.createElement('input')
                         var l_false = document.createElement('label')
                         l_false.textContent = "FALSE"
+
                         function setAttributes(el, attrs) {
                             for (var key in attrs) {
                                 el.setAttribute(key, attrs[key]);
                             }
                         }
-                        setAttributes(btn_true, { 'type': 'radio', "name": "Option", "value": "True", })
-                        setAttributes(btn_false, { 'type': 'radio', "name": "Option", "value": "False" })
+                        setAttributes(btn_true, {
+                            'type': 'radio',
+                            "name": "Option",
+                            "value": "True",
+                        })
+                        setAttributes(btn_false, {
+                            'type': 'radio',
+                            "name": "Option",
+                            "value": "False"
+                        })
                         div.append(q, btn_true, l_true, btn_false, l_false)
                         div_main.appendChild(div)
-                    }
-
-                    else if (type == "multiple") {
+                    } else if (type == "multiple") {
                         var div = document.createElement('div')
                         var q = document.createElement("h2")
                         var q_string = "Question : " + result.results[i].question
@@ -90,16 +98,33 @@ function display() {
                         opt_2_label.textContent = arr[1]
                         opt_3_label.textContent = arr[2]
                         opt_4_label.textContent = arr[3]
+
                         function setAttributes(el, attrs) {
                             for (var key in attrs) {
                                 el.setAttribute(key, attrs[key]);
                             }
                         }
 
-                        setAttributes(opt_1, { 'type': 'radio', "name": "Option", "value": arr[0] })
-                        setAttributes(opt_2, { 'type': 'radio', "name": "Option", "value": arr[1] })
-                        setAttributes(opt_3, { 'type': 'radio', "name": "Option", "value": arr[2] })
-                        setAttributes(opt_4, { 'type': 'radio', "name": "Option", "value": arr[3] })
+                        setAttributes(opt_1, {
+                            'type': 'radio',
+                            "name": "Option",
+                            "value": arr[0]
+                        })
+                        setAttributes(opt_2, {
+                            'type': 'radio',
+                            "name": "Option",
+                            "value": arr[1]
+                        })
+                        setAttributes(opt_3, {
+                            'type': 'radio',
+                            "name": "Option",
+                            "value": arr[2]
+                        })
+                        setAttributes(opt_4, {
+                            'type': 'radio',
+                            "name": "Option",
+                            "value": arr[3]
+                        })
 
                         div.append(q, opt_1, opt_1_label, opt_2, opt_2_label, opt_3, opt_3_label, opt_4, opt_4_label)
                         div_main.appendChild(div)
@@ -121,8 +146,7 @@ function click() {
     if (c_ans == event.target.value && event.target.localName == 'input') {
         event.target.parentNode.style = "background-color: rgb(35, 95, 35)"
 
-    }
-    else if (event.target.localName == 'input') {
+    } else if (event.target.localName == 'input') {
         event.target.parentNode.style = "background-color: rgb(139, 21, 21)"
 
     }
